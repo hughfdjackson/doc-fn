@@ -28,7 +28,26 @@ console.log(inc.doc)
 
 #### doc (fn) -> fn
 
-mutates a function to add a doc property, which includes all comments starting with `///`\nat the top of a function.
+mutates a function to add a doc property, which includes all comments starting with `///` at the top of a function.
+Also adds a .docs property, containing a map of 'section names' to 'vals', for every line with the format '/// section name: value'.
+
+```javascript
+
+var inc = doc(function(){
+    /// signature: number -> number
+    /// takes a number, and returns that number + 1
+    return a + 1
+})
+
+console.log(inc.doc)
+/* console output: 
+    signature: number -> number
+    takes a number, and returns that number + 1
+*/
+
+console.log(inc.docs.signature)
+// console output: number -> number 
+```
 
 #### doc.merge (object) -> object
 

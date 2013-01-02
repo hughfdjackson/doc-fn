@@ -19,25 +19,36 @@ test('it should extract the /// comments and assign it to the .doc property - an
 })
 
 test('it should only consider /// comments at the beginning of the function body.', function() {
-    var k = function(a) {
+    var k = doc(function(a) {
         /// The constant function.
         function _K() {
             /// Returns a.
             return a
         }
-    }
-    doc(k)
+    })
+
     a.equal(k.doc, 'The constant function.')
 })
 
 
-test('it should be null', function(){
-    var inc = function(a){
+test('.doc should be null if there are no ///s', function(){
+    var inc = doc(function(a){
         return a + 1
-    }
+    })
 
-    doc(inc)
     a.equal(inc.doc, null)
+})
+
+test('.docs holds normal docs in a body, and foo: bar in .foo', function(){
+    var inc = doc(function(a){
+        /// signature: a -> a
+        /// description: increments a number.
+        return a + 1
+    })
+
+    a.equal(inc.docs.signature, 'a -> a')
+    a.equal(inc.docs.description, 'increments a number.')
+    a.equal(inc.doc, 'signature: a -> a\ndescription: increments a number.')
 })
 
 suite('merge')
