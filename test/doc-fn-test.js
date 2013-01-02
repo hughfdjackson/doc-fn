@@ -3,6 +3,10 @@ var a = require('assert'),
 
 suite('doc')
 
+test('dogfooding', function(){
+    a.notEqual(doc.doc, null)
+})
+
 test('it should extract the /// comments and assign it to the .doc property - and mutate!', function(){
     var inc = function(a){
         /// foo 
@@ -27,16 +31,20 @@ test('it should only consider /// comments at the beginning of the function body
 })
 
 
-test('it should return "No documentation provided." if no triple-comments', function(){
+test('it should be null', function(){
     var inc = function(a){
         return a + 1
     }
 
     doc(inc)
-    a.equal(inc.doc, "No documentation provided.")
+    a.equal(inc.doc, null)
 })
 
 suite('merge')
+
+test('dogfooding', function(){
+    a.notEqual(doc.merge.doc, null)
+})
 
 test('it should set a getter', function(){
     if ( ! Object.defineProperty ) return
@@ -49,3 +57,4 @@ test('it should set a getter', function(){
    
     a.equal(fn.doc, "hey there sorella, what's it like in lispycity")
 })
+
