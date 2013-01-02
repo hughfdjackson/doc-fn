@@ -35,3 +35,17 @@ test('it should return "No documentation provided." if no triple-comments', func
     doc(inc)
     a.equal(inc.doc, "No documentation provided.")
 })
+
+suite('merge')
+
+test('it should set a getter', function(){
+    if ( ! Object.defineProperty ) return
+    
+    var fn = function(){
+        /// hey there sorella, what's it like in lispycity
+    }
+
+    doc.merge(fn)
+   
+    a.equal(fn.doc, "hey there sorella, what's it like in lispycity")
+})

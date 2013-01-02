@@ -12,4 +12,10 @@ var doc = function(fn){
     return fn
 }
 
+doc.merge = function(o){
+    if ( ! Object.defineProperty ) return o
+    Object.defineProperty(o, 'doc', { get: function(){ return getDoc(this) } })
+    return o
+}
+
 module.exports = doc
