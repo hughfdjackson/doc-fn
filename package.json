@@ -11,9 +11,9 @@
     "url": "https://github.com/hughfdjackson/doc-fn.git"
   },
   "keywords": [],
-  "authors": {
+  "authors": [
       "hughfdjackson",
       "quildreen motta"
-  },
+  ],
   "license": "BSD"
 }
