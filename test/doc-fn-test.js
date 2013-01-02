@@ -14,6 +14,18 @@ test('it should extract the /// comments and assign it to the .doc property - an
     a.equal(inc.doc, 'foo\nbar')
 })
 
+test('it should only consider /// comments at the beginning of the function body.', function() {
+    var k = function(a) {
+        /// The constant function.
+        function _K() {
+            /// Returns a.
+            return a
+        }
+    }
+    doc(k)
+    a.equal(k.doc, 'The constant function.')
+})
+
 
 test('it should return "No documentation provided." if no triple-comments', function(){
     var inc = function(a){
