@@ -1,9 +1,10 @@
-var trim = function(s){ return s.trim() }
+var doccomment = /^function\s+[^{]+{((?:\s*\/{3}.+)+)/
+var docprefix  = /^\s*\/{3}\s?/gm
 
 var getDoc = function(fn) {
-  var xs = fn.toString().match(/\/{3}(.+)/g)
-  return xs?  xs.map(trim).join('\n').replace(/^\/{3}\s?/mg, '')
-  :           'No documentation provided.'
+  var match = fn.toString().match(doccomment)
+  return match?  match[1].replace(docprefix, '')
+  :              'No documentation provided.'
 }
 
 var doc = function(fn){
