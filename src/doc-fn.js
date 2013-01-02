@@ -1,9 +1,9 @@
-var doccomment = /^function\s+[^{]+{((?:\s*\/{3}.+)+)/
-var docprefix  = /^\s*\/{3}\s?/gm
+var doc_comment = /^function\s+[^{]+{((?:\s*\/{3}.+)+)/
+var doc_surroundings  = /(^\s*\/{3}\s?)|(\s+$)/gm
 
 var getDoc = function(fn) {
-  var match = fn.toString().match(doccomment)
-  return match?  match[1].replace(docprefix, '')
+  var match = fn.toString().match(doc_comment)
+  return match?  match[1].replace(doc_surroundings, '')
   :              'No documentation provided.'
 }
 
