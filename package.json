@@ -1,5 +1,6 @@
 {
   "name": "doc-fn",
+  "description": "extracts documentation from functions for REPL and doc-compiling fun",
   "version": "0.1.0",
   "main": "src/doc-fn.js",
   "scripts": {
